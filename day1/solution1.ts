@@ -1,4 +1,4 @@
-import { testInput1 } from "./testInput1";
+import { testInput1 } from "./testInput1.ts";
 
 const solve = (input: number[]): number => {
   let result = 0;
