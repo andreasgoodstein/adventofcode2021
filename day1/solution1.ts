@@ -1,6 +1,4 @@
-import { input } from "./puzzle1.ts";
-
-const solve = (input: number[]): number => {
+export const day1part1 = (input: number[]): number => {
   let result = 0;
 
   for (let n = 0; n < input.length - 1; n += 1) {
@@ -13,7 +11,3 @@ const solve = (input: number[]): number => {
 
   return result;
 };
-
-const solution = solve(input);
-
-console.log(solution);
