@@ -1,5 +1,5 @@
-import { day1part1 } from "./day1/solution1.ts";
-import { day1part2 } from "./day1/solution2.ts";
+import { day1part1 } from "./day1/part1.ts";
+import { day1part2 } from "./day1/part2.ts";
 
 import { readFileLineNumbers } from "./parser.ts";
 import { logExecutionTime } from "./timer.ts";
