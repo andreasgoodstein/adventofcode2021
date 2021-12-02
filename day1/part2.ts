@@ -1,4 +1,4 @@
-import { day1part1 as countIncreasingSums } from "./solution1.ts";
+import { day1part1 as countIncreasingSums } from "./part1.ts";
 
 export const day1part2 = (input: number[]): number => {
   const sumList = input.map((_, index) =>
