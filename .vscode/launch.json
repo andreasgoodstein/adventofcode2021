@@ -7,7 +7,7 @@
       "request": "launch",
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "deno",
-      "runtimeArgs": ["run", "--inspect", "-A", "day9.ts"],
+      "runtimeArgs": ["run", "--inspect", "-A", "day10.ts"],
       "port": 0,
       "outputCapture": "std"
     }
