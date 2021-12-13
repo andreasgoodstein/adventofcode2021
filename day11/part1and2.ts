@@ -1,3 +1,5 @@
+import { getCoordId } from "../helper.ts";
+
 const END_STEP = 100;
 const MAX_SYNC_STEP = 1000;
 
@@ -62,8 +64,6 @@ const increaseEnergy = (
     flashCount += 1;
   }
 };
-
-const getCoordId = (x: number, y: number) => `${x},${y}`;
 
 const triggerFlash = (
   x: number,
