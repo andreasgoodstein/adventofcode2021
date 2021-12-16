@@ -22,7 +22,7 @@ export const part1 = (input: string[]) => {
 const getArray = (input: string[]) =>
   input.map((line) => line.split("").map((char) => parseInt(char, 10)));
 
-const getEdgeList = (input: number[][]) => {
+export const getEdgeList = (input: number[][]) => {
   const edgeMap: Record<string, Record<string, number>> = {};
 
   for (let y = 0; y < input.length; y++) {
@@ -49,9 +49,9 @@ const getNeighbors = (x: number, y: number, array: number[][]) =>
     ([x, y]) => x > -1 && y > -1 && y < array.length && x < array[y].length
   );
 
-const getId = (x: number, y: number) => `${x},${y}`;
+export const getId = (x: number, y: number) => `${x},${y}`;
 
-const getGraph = (edgeList: Record<string, Record<string, number>>) => {
+export const getGraph = (edgeList: Record<string, Record<string, number>>) => {
   const g = new graph.Graph({ multigraph: true });
 
   Object.entries(edgeList).forEach(([edge, edges]) => {
@@ -63,7 +63,7 @@ const getGraph = (edgeList: Record<string, Record<string, number>>) => {
   return g;
 };
 
-const getEdgeWeightMap = (list: string[], array: number[][]) => {
+export const getEdgeWeightMap = (list: string[], array: number[][]) => {
   return list.reduce((map, edge) => {
     const [x, y] = edge.split(",").map((char) => parseInt(char, 10));
 
