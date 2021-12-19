@@ -1,17 +1,24 @@
 const parseToBinary = (char: string) =>
   (parseInt(char, 16) >>> 0).toString(2).padStart(4, "0");
+export type Unit = {
+  level: number;
+  version: string;
+  type: string;
+  value: string;
+  rest: string;
+};
 
-const stack: Record<string, string>[] = [];
+export const stack: Unit[] = [];
 
 export const part1 = (input: string[]) => {
   const line = Array.from(input[0]).map(parseToBinary).join("");
 
-  parseRest(line);
+  parseRest(line, 0);
 
   return stack.reduce((sum, { version }) => sum + parseInt(version, 2), 0);
 };
 
-export const parseRest = (restInput: string) => {
+export const parseRest = (restInput: string, level: number) => {
   if (restInput.length < 11) {
     return { rest: restInput };
   }
@@ -31,14 +38,14 @@ export const parseRest = (restInput: string) => {
     }
 
     default: {
-      const parsed = parseOperation(rest);
+      const parsed = parseOperation(rest, level + 1);
       value = parsed.value;
       rest = parsed.rest;
       break;
     }
   }
 
-  stack.push({ version, type, value, rest });
+  stack.push({ level, version, type, value, rest });
 
   return { rest, value };
 };
@@ -57,7 +64,7 @@ const parseLiteral = (input: string) => {
   return { value, rest: subInput.slice(5) };
 };
 
-const parseOperation = (input: string) => {
+const parseOperation = (input: string, level: number) => {
   let subRest = "";
 
   const is15Bit = input[0] === "0";
@@ -66,7 +73,7 @@ const parseOperation = (input: string) => {
     const subLength = parseInt(input.slice(1, 16), 2);
     subRest = input.slice(16, 16 + subLength);
     while (subRest) {
-      const { rest } = parseRest(subRest);
+      const { rest } = parseRest(subRest, level);
       subRest = rest;
     }
     subRest = input.slice(16 + subLength);
@@ -74,7 +81,7 @@ const parseOperation = (input: string) => {
     let subCount = parseInt(input.slice(1, 12), 2);
     subRest = input.slice(12);
     while (subRest && subCount > 0) {
-      const { rest } = parseRest(subRest);
+      const { rest } = parseRest(subRest, level);
       subRest = rest;
       subCount -= 1;
     }
